@@ -11,28 +11,17 @@ public enum Delivery {
     TNT (370),
     UKRPOST(1000);
 
-    private final double speed; //km per 1 day
+    int speed; //km per 1 day
 
-    Delivery(double speed){
+    Delivery(int speed){
         this.speed = speed;
     }
 
-    private double speedOfDelivery() {return speed;}
+    int speedOfDelivery() {return speed;}
 
-
-    public static void compareDuration(Delivery delivery, double distance) {
-        int duration;
-        duration = (int) (distance/delivery.speedOfDelivery());
-
-        switch (delivery) {
-            case DHL: case FEDEX: case UPS: case TNT:
-                System.out.println("Duration of delivery by " + delivery + " will be " + duration + " days");
-                break;
-
-            case UKRPOST:
-            default:
-                System.out.println("You'd better choose another option than " + delivery);
-                break;
-        }
+    int getDeliveryDuration(double distance){
+        return (int) distance/this.speedOfDelivery();
     }
+
 }
+
